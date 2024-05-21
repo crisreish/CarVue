@@ -41,7 +41,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ car.name }}</h5>
               <p class="card-text">{{ car.description }}</p>
-              <a href="#" class="btn btn-dark">Alugar</a>
+              <a href="#" class="btn btn-dark">Detalhes</a>
             </div>
           </div>
         </div>
@@ -64,21 +64,39 @@ export default {
       cars: [
         {
           id: 1,
-          name: 'ABT RS 3-S Sportback 2024',
-          description: 'O ABT RS 3-S Sportback 2024 combina perfeitamente desempenho e estilo. A indústria automobilística está avançando.',
+          name: 'Geely Galaxy E5 2025',
+          description: 'SUV elétrico compacto, oferece bastante espaço para os ocupantes. células da bateria do novo SUV elétrico. Células da bateria que elimina o nível de ruído do módulo.',
           imageUrl: 'https://fotos-jornaldocarro-estadao.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2021/09/18111512/16.09.21_Creta-Ultimate-1160x652.jpg'
         },
         {
           id: 2,
-          name: 'Geely Galaxy E5 2025',
-          description: 'O Futuro da Mobilidade: Geely Galaxy E5 A indústria automobilística está passando por uma revolução.',
+          name: 'Hyundai Santa Cruz 2024',
+          description: 'Picape compacta monobloco, conjunto ótico full LED e rodas diamantadas de até 19 polegadas. Oferece um espaço de caçamba generoso, com capacidade para 935 litros.',
           imageUrl: 'https://carrosbemmontados.com.br/wp-content/webp-express/webp-images/uploads/2024/04/2025-HYUNDAI-SANTA-CRUZ-8-1536x864.jpg.webp'
         },
         {
           id: 3,
-          name: 'Volkswagen Tiguan L 2024',
-          description: 'Volkswagen Tiguan L 2024: Um SUV Compacto Repleto de Recursos O Volkswagen Tiguan L 2024',
+          name: 'GWM Ora 03 2024',
+          description: 'Farol alto automático, que reduz o facho do farol quando detecta veículo no sentido oposto. Retrovisores externos com setas, rebatimento elétrico e aquecimento.',
           imageUrl: 'https://autoentusiastas.com.br/ae/wp-content/uploads/2023/08/AE-GWM-Ora-03-divulgacao-1.png'
+        },
+        {
+          id: 4,
+          name: 'Renault Zoe e-tech Elétrico',
+          description: 'Carro 100% elétrico com zero emissão de ruídos e autonomia de 385 km, com Full Park Assist e teto solar panorâmico. Design inovador de crossover esportivo.',
+          imageUrl: 'https://s1.1zoom.me/big3/956/359267-admin.jpg'
+        },
+        {
+          id: 5,
+          name: 'Toyota Yaris 2023',
+          description: 'Yaris XL 1.5 Flex Automático. transmissão automática, direção elétrica, vidros elétricos dianteiros e traseiros, para-sol com espelho e iluminação.',
+          imageUrl: 'https://cdn.motor1.com/images/mgl/9wBev/s1/comparativo-toyota-yaris-x-vw-polo.jpg'
+        },
+        {
+          id: 6,
+          name: 'BMW M3 Laranja 2025',
+          description: 'Direção Elétrica, Comando de áudio no volante, Controle de estabilidade, Distribuição eletrônica de frenagem, Kit Multimídia, Pára-choques na cor do veículo.',
+          imageUrl: 'https://wallpaper.forfun.com/fetch/b1/b1c65ef9df8f01eb6643675c88e41224.jpeg'
         }
       ]
     };
