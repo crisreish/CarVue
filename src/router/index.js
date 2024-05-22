@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import CarListView from '@/views/CarListView.vue';
 import CarFormView from '@/views/CarFormView.vue';
+import CarDetails from '@/views/CarDetails.vue';
 
 const routes = [
   {
@@ -23,6 +24,12 @@ const routes = [
     path: '/edit/:id',
     name: 'car-edit',
     component: CarFormView,
+    props: true
+  },
+  {
+    path: '/Car-details',
+    name: 'car-details',
+    component: CarDetails,
     props: true
   }
 ];

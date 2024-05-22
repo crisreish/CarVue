@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-container panel-info">
     <h2>{{ isEdit ? 'Editar Carro' : 'Adicionar Carro' }}</h2>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
@@ -34,6 +34,7 @@
         <label for="carImageUrl">Link da Imagem</label>
         <input type="text" class="form-control" id="carImageUrl" v-model="car.imageUrl" required>
       </div>
+      <br>
       <button type="submit" class="btn btn-primary">{{ isEdit ? 'Atualizar' : 'Adicionar' }}</button>
     </form>
   </div>
@@ -66,13 +67,31 @@ export default {
   methods: {
     ...mapActions(['addCar', 'updateCar']),
     handleSubmit() {
+
+        if (!this.validateDates()) {
+      return;
+    }
+    // Continuar com o processamento do formulário
+
+
       if (this.isEdit) {
         this.updateCar(this.car);
       } else {
         this.addCar(this.car);
       }
       this.$router.push({ name: 'car-list' });
+    },
+
+    validateDates() {
+    const pickupDate = new Date(this.car.pickupDate);
+    const returnDate = new Date(this.car.returnDate);
+
+    if (pickupDate > returnDate) {
+      alert('A data de retirada não pode ser posterior à data de devolução.');
+      return false;
     }
+    return true;
+  }
   },
   created() {
     if (this.isEdit) {
@@ -84,3 +103,44 @@ export default {
   }
 };
 </script>
+<style scoped>
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 70%; /* Define a largura máxima do container */
+  margin: auto; /* Centraliza o container horizontalmente */
+  padding: 20px; /* Adiciona algum padding interno para espaçamento */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-input,.form-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-button {
+  align-self: flex-end;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+ .form-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+</style>
