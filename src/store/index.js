@@ -3,7 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default createStore({
   state: {
-    cars: []
+    cars: [],
+    tempCar: null
   },
   mutations: {
     ADD_CAR(state, car) {
@@ -17,7 +18,15 @@ export default createStore({
     },
     DELETE_CAR(state, carId) {
       state.cars = state.cars.filter(car => car.id !== carId);
-    }
+    },
+    SET_TEMP_CAR(state, car) {
+      state.cars = state.cars.filter(car => car.id);
+      state.tempCar = car;
+    },
+
+    UPDATE_CARS(state, newCarsArray) {
+      state.cars = newCarsArray;
+    },
   },
   actions: {
     addCar({ commit }, car) {
@@ -29,9 +38,17 @@ export default createStore({
     },
     deleteCar({ commit }, carId) {
       commit('DELETE_CAR', carId);
-    }
+    },
+  setTempCar({ commit },car) {
+    commit('SET_TEMP_CAR',car);
+  },
+  updateCars({ commit }, newCarsArray) {
+    commit('UPDATE_CARS', newCarsArray);
+  }
+
   },
   getters: {
-    cars: state => state.cars
+    cars: state => state.cars,
+    getTempCar: state => state.tempCar,
   }
 });

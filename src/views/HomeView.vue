@@ -12,7 +12,7 @@
     <div id="carCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <!-- Slides -->
-        <div v-for="(car, index) in cars" :key="car.id" :class="['carousel-item', index === 0 ? 'active' : '']">
+        <div v-for="(car, index) in cars" :key="car.id" :class="['carousel-item', index === 0 ? 'active' : 'active']">
           <img :src="car.imageUrl" class="d-block w-100" :alt="'Slide ' + (index + 1)">
           <div class="carousel-caption d-none d-md-block">
             <h5>{{ car.name }}</h5>
@@ -41,7 +41,8 @@
             <div class="card-body">
               <h5 class="card-title">{{ car.name }}</h5>
               <p class="card-text">{{ car.description }}</p>
-              <a href="#" class="btn btn-dark">Detalhes</a>
+             <!-- <a href="#" class="btn btn-dark">Detalhes</a> -->
+              <button @click="openCarDetails(car.id)">Detalhes</button>
             </div>
           </div>
         </div>
@@ -49,58 +50,89 @@
     </section>
 
     <!-- Rodapé -->
-    <footer class="bg-dark text-light py-3 mt-auto">
+   <!--  <footer class="bg-dark text-light py-3 mt-auto">
       <div class="container">
         <p class="m-0 text-center">© 2024 Next Carros | Locadora de Carros. Todos os direitos reservados.</p>
       </div>
-    </footer>
+    </footer>-->
+
+
   </div>
+  <FooterProject/>
 </template>
 
 <script>
+import FooterProject from '@/components/FooterProject.vue';
 export default {
+  components: {
+    FooterProject,
+  },
+  props: ['car'],
+  methods: {
+    openCarDetails(id) {
+    // Supondo que você tenha acesso aos carros via this.cars ou similar
+    const car = this.cars.find(car => car.id === id);
+    if (car) {
+      this.$store.dispatch('setTempCar', car);
+      this.$router.push({ name: 'car-details' });
+    } else {
+      console.error('Carro não encontrado.');
+    }
+  },
+  },
+ 
   data() {
     return {
       cars: [
         {
           id: 1,
           name: 'Geely Galaxy E5 2025',
+          price:" R$ 195,00",
           description: 'SUV elétrico compacto, oferece bastante espaço para os ocupantes. células da bateria do novo SUV elétrico. Células da bateria que elimina o nível de ruído do módulo.',
           imageUrl: 'https://fotos-jornaldocarro-estadao.nyc3.cdn.digitaloceanspaces.com/wp-content/uploads/2021/09/18111512/16.09.21_Creta-Ultimate-1160x652.jpg'
+          
         },
         {
           id: 2,
           name: 'Hyundai Santa Cruz 2024',
+          price:" R$ 195,00",
           description: 'Picape compacta monobloco, conjunto ótico full LED e rodas diamantadas de até 19 polegadas. Oferece um espaço de caçamba generoso, com capacidade para 935 litros.',
           imageUrl: 'https://carrosbemmontados.com.br/wp-content/webp-express/webp-images/uploads/2024/04/2025-HYUNDAI-SANTA-CRUZ-8-1536x864.jpg.webp'
         },
         {
           id: 3,
           name: 'GWM Ora 03 2024',
+          price:" R$ 195,00",
           description: 'Farol alto automático, que reduz o facho do farol quando detecta veículo no sentido oposto. Retrovisores externos com setas, rebatimento elétrico e aquecimento.',
           imageUrl: 'https://autoentusiastas.com.br/ae/wp-content/uploads/2023/08/AE-GWM-Ora-03-divulgacao-1.png'
         },
         {
           id: 4,
           name: 'Renault Zoe e-tech Elétrico',
+          price:" R$ 195,00",
           description: 'Carro 100% elétrico com zero emissão de ruídos e autonomia de 385 km, com Full Park Assist e teto solar panorâmico. Design inovador de crossover esportivo.',
           imageUrl: 'https://s1.1zoom.me/big3/956/359267-admin.jpg'
         },
         {
           id: 5,
           name: 'Toyota Yaris 2023',
+          price:" R$ 195,00",
           description: 'Yaris XL 1.5 Flex Automático. transmissão automática, direção elétrica, vidros elétricos dianteiros e traseiros, para-sol com espelho e iluminação.',
           imageUrl: 'https://cdn.motor1.com/images/mgl/9wBev/s1/comparativo-toyota-yaris-x-vw-polo.jpg'
         },
         {
           id: 6,
           name: 'BMW M3 Laranja 2025',
+          price:" R$ 195,00",
           description: 'Direção Elétrica, Comando de áudio no volante, Controle de estabilidade, Distribuição eletrônica de frenagem, Kit Multimídia, Pára-choques na cor do veículo.',
           imageUrl: 'https://wallpaper.forfun.com/fetch/b1/b1c65ef9df8f01eb6643675c88e41224.jpeg'
         }
       ]
     };
-  }
+  },
+  created() {
+    this.$store.dispatch('updateCars', this.cars);
+  },
 };
 </script>
 
